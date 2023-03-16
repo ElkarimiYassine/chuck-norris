@@ -1,0 +1,32 @@
+<%- include('../parts/header.ejs') %>
+<title>All Jokes</title>
+</head>
+<body>
+<%- include('../parts/navbar.ejs') %>
+<h3 class="m-3"><span class="badge bg-secondary">Profile : <%= user.email %> </span></h3>
+<div class="container">
+    <% if (message && message != "") { %>
+        <div class="alert alert-success mt-3">
+            <%= message %>
+        </div>
+    <% } %>
+    <% chunk.forEach((jokes) => { %>
+        <div class="row mt-3">
+            <% jokes.forEach((joke) => { %>
+            <div class="col-sm-5 col-md-4">
+                <% if((user) && user.id == joke.user_id) { %>
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= joke.title %></h5>
+                      <p class="card-text"><%= joke.joke %></p>
+                      <a href="<%= '/jokes/'+joke.id %>" class="btn btn-primary">Show Joke</a>
+                    </div>
+                  </div>
+                  <% } %>
+            </div>
+            <% }) %>
+        </div>
+    <% }) %>
+</div>
+
+<%- include('../parts/footer.ejs') %>

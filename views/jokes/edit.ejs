@@ -1,0 +1,44 @@
+<%- include('../parts/header.ejs') %>
+<title>Update Joke</title>
+</head>
+<body>
+<%- include('../parts/navbar.ejs') %>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="d-flex justify-content-center">
+                <h4>Update Joke</h4>
+            </div>
+            <hr>
+            <% if (errors) { %>
+                <%errors.forEach((err)=>{ %>
+                    <div class="alert alert-danger">
+                        <%= err.msg %>
+                    </div>
+                <% }) %>  
+            <% } %> 
+            <% if (message && message != "") { %>
+                <div class="alert alert-success mt-3">
+                    <%= message %>
+                </div>
+            <% } %>  
+            <form action="/jokes/update" method="POST">
+                <div class="mb-3">
+                    <input type="hidden" name="id" value="<%= joke.id %>">
+                    <div class="form-group mb-2">
+                        <label for="title" class="mb-2">Title :</label>
+                        <input type="text" name="title" id="title" class="form-control" value="<%= joke.title %>">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="description" class="mb-2">Joke :</label>
+                        <textarea name="joke" class="form-control"><%= joke.joke %></textarea>
+                    </div>
+                    <div class="mt-3 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary m-3">Update Joke</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>    
+</div>   
+<%- include('../parts/footer.ejs') %>

@@ -1,0 +1,31 @@
+<%- include('../parts/header.ejs') %>
+<title><%= joke.title %></title>
+</head>
+<body>
+<%- include('../parts/navbar.ejs') %>
+<div class="container">
+  <h3 class="m-3"><span class="badge bg-secondary">Joke : <%= joke.title %> </span></h3>
+    <div class="row mt-3">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <h3 class="card-title"><%= joke.title %></h3>
+                    </div>    
+                  <hr>
+                  <div class="d-flex justify-content-center">
+                    <p class="card-text"><%= joke.joke %></p>
+                  </div>
+                  <% if((user) && user.id == joke.user_id) { %>
+                  <hr>
+                  <div class="d-flex justify-content-center">
+                    <a href="<%= '/jokes/edit/'+joke._id %>" class="btn btn-warning m-3">Edit</a>
+                    <button class="btn btn-danger m-3" onclick="deleteJoke()" id="deleteBtn" data-id="<%= joke.id %>">Delete</button>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+<%- include('../parts/footer.ejs') %>
